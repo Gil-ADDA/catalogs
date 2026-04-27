@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Israel @ MOVE London 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family:'DM Sans',sans-serif;
+  background:#0A0F1E;
+  color:#E8E6E0;
+  min-height:100vh;
+}
+
+.poster {
+  width:100%;
+  max-width:1080px;
+  margin:0 auto;
+  position:relative;
+  background:linear-gradient(160deg,#0A0F1E 0%,#0D1428 30%,#111B36 60%,#0A0F1E 100%);
+  overflow:hidden;
+  padding-bottom:40px;
+}
+
+.bg-grid {
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(70,130,255,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(70,130,255,0.04) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,black 20%,transparent 70%);
+  pointer-events:none;
+}
+.glow-orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;}
+.glow-orb.blue {width:clamp(200px,45vw,500px);height:clamp(200px,45vw,500px);background:#3B82F6;top:-100px;right:-100px;opacity:.15;}
+.glow-orb.teal {width:clamp(160px,37vw,400px);height:clamp(160px,37vw,400px);background:#14B8A6;bottom:200px;left:-80px;opacity:.15;}
+.glow-orb.amber{width:clamp(120px,28vw,300px);height:clamp(120px,28vw,300px);background:#F59E0B;bottom:-50px;right:100px;opacity:.08;}
+
+/* HEADER */
+.header{
+  position:relative;z-index:2;
+  padding:clamp(20px,4vw,60px) clamp(16px,5vw,70px) clamp(12px,2vw,30px);
+  display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;
+}
+.event-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(59,130,246,0.12);
+  border:1px solid rgba(59,130,246,0.25);
+  border-radius:100px;padding:7px 18px;
+  font-size:clamp(10px,1.2vw,13px);font-weight:500;
+  color:#7CB3F4;letter-spacing:1.5px;text-transform:uppercase;
+}
+.event-badge .dot{
+  width:6px;height:6px;background:#3B82F6;border-radius:50%;
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
+.iei-logo{
+  font-weight:700;font-size:clamp(10px,1.2vw,14px);
+  color:#94A3B8;letter-spacing:2px;text-transform:uppercase;
+  text-align:right;line-height:1.6;
+}
+.iei-logo span{color:#E8E6E0;font-size:clamp(12px,1.5vw,16px);display:block;}
+
+/* HERO */
+.hero{
+  position:relative;z-index:2;
+  padding:clamp(8px,1.5vw,20px) clamp(16px,5vw,70px) clamp(8px,1vw,10px);
+}
+.hero h1{
+  font-family:'Playfair Display',serif;font-weight:600;
+  font-size:clamp(28px,5.5vw,56px);line-height:1.15;
+  color:#fff;letter-spacing:-0.5px;
+}
+.hero h1 em{
+  font-style:italic;
+  background:linear-gradient(90deg,#60A5FA,#2DD4BF);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{
+  margin-top:12px;font-size:clamp(13px,1.7vw,18px);
+  color:#94A3B8;font-weight:400;
+}
+
+.divider-line{
+  position:relative;z-index:2;
+  margin:clamp(16px,2.5vw,30px) clamp(16px,5vw,70px);
+  height:1px;
+  background:linear-gradient(90deg,rgba(59,130,246,0.4),rgba(45,212,191,0.3),transparent);
+}
+
+/* GRID */
+.companies-grid{
+  position:relative;z-index:2;
+  padding:0 clamp(12px,4vw,50px);
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));
+  gap:clamp(10px,1.5vw,16px);
+}
+
+a.company-card{
+  text-decoration:none;color:inherit;display:block;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:clamp(10px,1.5vw,16px);
+  padding:clamp(16px,2.5vw,28px) clamp(16px,2.8vw,30px);
+  transition:all .3s ease;position:relative;overflow:hidden;
+  -webkit-tap-highlight-color:transparent;
+}
+a.company-card:hover,a.company-card:active{
+  background:rgba(255,255,255,0.07);
+  border-color:rgba(255,255,255,0.15);
+  transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(0,0,0,.3);
+}
+a.company-card::before{
+  content:'';position:absolute;top:0;left:0;
+  width:4px;height:100%;border-radius:4px 0 0 4px;
+}
+.company-card:nth-child(1)::before{background:linear-gradient(180deg,#3B82F6,#2563EB)}
+.company-card:nth-child(2)::before{background:linear-gradient(180deg,#14B8A6,#0D9488)}
+.company-card:nth-child(3)::before{background:linear-gradient(180deg,#F59E0B,#D97706)}
+.company-card:nth-child(4)::before{background:linear-gradient(180deg,#8B5CF6,#7C3AED)}
+.company-card:nth-child(5)::before{background:linear-gradient(180deg,#EC4899,#DB2777)}
+.company-card:nth-child(6)::before{background:linear-gradient(180deg,#EF4444,#DC2626)}
+.company-card:nth-child(7)::before{background:linear-gradient(180deg,#06B6D4,#0891B2)}
+.company-card:nth-child(8)::before{background:linear-gradient(180deg,#10B981,#059669)}
+
+.company-number{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(18px,2.5vw,28px);font-weight:700;
+  opacity:.08;position:absolute;top:12px;right:18px;
+}
+.company-name{
+  font-size:clamp(15px,1.8vw,19px);font-weight:600;
+  color:#fff;margin-bottom:6px;letter-spacing:-0.2px;
+}
+.company-oneliner{
+  font-size:clamp(11.5px,1.3vw,13.5px);line-height:1.55;
+  color:#8899B0;font-weight:400;
+}
+.sector-tag{
+  display:inline-block;margin-top:10px;
+  font-size:clamp(9px,1vw,10.5px);font-weight:600;
+  letter-spacing:1.2px;text-transform:uppercase;
+  padding:4px 10px;border-radius:4px;
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+}
+.company-card:nth-child(1) .sector-tag{color:#60A5FA;border-color:rgba(59,130,246,.2)}
+.company-card:nth-child(2) .sector-tag{color:#5EEAD4;border-color:rgba(20,184,166,.2)}
+.company-card:nth-child(3) .sector-tag{color:#FCD34D;border-color:rgba(245,158,11,.2)}
+.company-card:nth-child(4) .sector-tag{color:#C4B5FD;border-color:rgba(139,92,246,.2)}
+.company-card:nth-child(5) .sector-tag{color:#F9A8D4;border-color:rgba(236,72,153,.2)}
+.company-card:nth-child(6) .sector-tag{color:#FCA5A5;border-color:rgba(239,68,68,.2)}
+.company-card:nth-child(7) .sector-tag{color:#67E8F9;border-color:rgba(6,182,212,.2)}
+.company-card:nth-child(8) .sector-tag{color:#6EE7B7;border-color:rgba(16,185,129,.2)}
+
+/* FOOTER */
+.footer{
+  position:relative;z-index:2;
+  padding:clamp(20px,3.5vw,40px) clamp(16px,5vw,70px) clamp(16px,3vw,30px);
+  display:flex;justify-content:space-between;align-items:flex-end;
+  flex-wrap:wrap;gap:16px;
+}
+.event-details{display:flex;gap:clamp(16px,3vw,40px);flex-wrap:wrap;margin-bottom:10px;}
+.detail-label{font-size:clamp(8px,.9vw,10px);font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#546580;}
+.detail-value{font-size:clamp(13px,1.5vw,16px);font-weight:500;color:#CBD5E1;}
+.cta-text{font-size:clamp(11px,1.3vw,14px);color:#64748B;}
+.cta-text a{color:#60A5FA;text-decoration:none;font-weight:500;}
+.footer-flag{font-size:clamp(24px,3.5vw,40px);opacity:.7;}
+
+
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="bg-grid"></div>
+  <div class="glow-orb blue"></div>
+  <div class="glow-orb teal"></div>
+  <div class="glow-orb amber"></div>
+
+  <div class="header">
+    <div class="event-badge"><span class="dot"></span>MOVE London 2026</div>
+    <div class="iei-logo"><span>Israel Export Institute</span>AutoTech & Smart Mobility</div>
+  </div>
+
+  <div class="hero">
+    <h1>Israeli <em>Innovation</em><br>on the Global Stage</h1>
+    <p class="hero-sub">8 companies shaping the future of mobility, safety & connectivity</p>
+  </div>
+
+  <div class="divider-line"></div>
+
+  <div class="companies-grid">
+
+    <a class="company-card" href="https://metryon.tech" target="_blank" rel="noopener">
+      <span class="company-number">01</span>
+      <div class="company-name">Metryon Technologies</div>
+      <div class="company-oneliner">Zero-emission powertrain systems converting hydrocarbons into clean electricity for trucks, buses, trains & ships</div>
+      <span class="sector-tag">Clean Energy · Powertrain</span>
+    </a>
+
+    <a class="company-card" href="https://emaze.ai" target="_blank" rel="noopener">
+      <span class="company-number">02</span>
+      <div class="company-name">emaze.ai</div>
+      <div class="company-oneliner">AI-powered platform that automatically personalizes every customer touchpoint interaction at scale</div>
+      <span class="sector-tag">AI · Customer Experience</span>
+    </a>
+
+    <a class="company-card" href="https://www.elssway.com" target="_blank" rel="noopener">
+      <span class="company-number">03</span>
+      <div class="company-name">Elssway</div>
+      <div class="company-oneliner">City-wide wireless charging for light electric vehicle fleets — e-scooters, e-bikes, drones & delivery robots</div>
+      <span class="sector-tag">EV Charging · Micromobility</span>
+    </a>
+
+    <a class="company-card" href="https://polyn.ai" target="_blank" rel="noopener">
+      <span class="company-number">04</span>
+      <div class="company-name">POLYN Technology</div>
+      <div class="company-oneliner">Neuromorphic analog Tiny AI chips for ultra-low-power sensor data pre-processing at the edge</div>
+      <span class="sector-tag">Semiconductors · Edge AI</span>
+    </a>
+
+    <a class="company-card" href="https://www.step-hear.com" target="_blank" rel="noopener">
+      <span class="company-number">05</span>
+      <div class="company-name">Step Hear</div>
+      <div class="company-oneliner">Accessible orientation & audio-guidance for visually impaired individuals in public spaces and transit</div>
+      <span class="sector-tag">Accessibility · Smart City</span>
+    </a>
+
+    <a class="company-card" href="https://www.ermtelematics.com" target="_blank" rel="noopener">
+      <span class="company-number">06</span>
+      <div class="company-name">ERM Advanced Telematics</div>
+      <div class="company-oneliner">Modular connected-car telematics for fleet management, GPS tracking & vehicle security</div>
+      <span class="sector-tag">Telematics · Fleet Management</span>
+    </a>
+
+    <a class="company-card" href="https://hopon.co" target="_blank" rel="noopener">
+      <span class="company-number">07</span>
+      <div class="company-name">HopOn Mobility</div>
+      <div class="company-oneliner">Seamless MaaS platform for mobile ticketing, account-based billing & data collection across public transit</div>
+      <span class="sector-tag">MaaS · Public Transit</span>
+    </a>
+
+    <a class="company-card" href="https://www.eyenet-mobile.com" target="_blank" rel="noopener">
+      <span class="company-number">08</span>
+      <div class="company-name">Eye-Net Mobile</div>
+      <div class="company-oneliner">Cellular-based V2X collision prevention delivering real-time pre-collision alerts to all road users</div>
+      <span class="sector-tag">V2X · Road Safety</span>
+    </a>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">
+      <div class="event-details">
+        <div class="detail-item">
+          <div class="detail-label">When</div>
+          <div class="detail-value">June 16–18, 2026</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Where</div>
+          <div class="detail-value">ExCeL London</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Pavilion</div>
+          <div class="detail-value">Israel National</div>
+        </div>
+      </div>
+      <div class="cta-text">Schedule B2B meetings → <a href="mailto:GilA@export.gov.il">GilA@export.gov.il</a></div>
+    </div>
+    <div class="footer-flag">🇮🇱</div>
+  </div>
+
+</div>
+
+</body>
+</html>
